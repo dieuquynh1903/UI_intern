@@ -1,0 +1,140 @@
+
+<div class="container-fluid">
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="user">User Management System</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <button class="btn btn-outline-success" data-bs-toggle="modal" data-bs-target="#addUser" type="submit">Add User</button>
+      </div>
+    </div>
+  </nav>
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th scope="col">User ID</th>
+        <th scope="col">Name</th>
+        <th scope="col">Email</th>
+        <th scope="col">Salary</th>
+        <th scope="col">Action</th>
+      </tr>
+    </thead>
+    <tbody>
+    <tr>
+      <th scope="row">1</th>
+      <td>Mark</td>
+      <td>Otto</td>
+      <td>@mdo</td>
+        <button type="button" class="btn btn-outline-primary me-2" data-bs-toggle="modal" data-bs-target="#editUser" (click)="editUser">Edit</button>
+        <button type="button" class="btn btn-outline-danger" (click)="deleteUser">Delete</button>
+    </tr>
+    <tr>
+      <th scope="row">2</th>
+      <td>Jacob</td>
+      <td>Thornton</td>
+      <td>@fat</td>
+      <button type="button" class="btn btn-outline-primary me-2" data-bs-toggle="modal" data-bs-target="#editUser" (click)="editUser">Edit</button>
+        <button type="button" class="btn btn-outline-danger" (click)="deleteUser">Delete</button>
+    </tr>
+    <tr>
+      <th scope="row">3</th>
+      <td>Jacob</td>
+      <td>Thornton</td>
+      <td>@fat</td>
+      <button type="button" class="btn btn-outline-primary me-2" data-bs-toggle="modal" data-bs-target="#editUser" (click)="editUser">Edit</button>
+        <button type="button" class="btn btn-outline-danger" (click)="deleteUser">Delete</button>
+    </tr>
+  </tbody>
+    <tbody>
+      <tr *ngFor="let user of empList">
+        <td>{{user.id}}</td>
+        <td>{{user.name}}</td>
+        <td>{{user.email}}</td>
+        <td>{{user.salary}}</td>
+        <td>
+          <button type="button" class="btn btn-outline-primary me-2" data-bs-toggle="modal"
+            data-bs-target="#editUser" (click)="editUser(user)">Edit</button>
+          <button type="button" class="btn btn-outline-danger" (click)="deleteUser(user)">Delete</button>
+        </td>
+
+      </tr>
+
+    </tbody>
+  </table>
+  
+
+  <!-- Add employee modal -->
+  <div class="modal fade" id="addUser" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Add new user</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+
+          <form [formGroup]="empDetail">
+            <div class="mb-3">
+              <label for="exampleInputEmail1" class="form-label">Name </label>
+              <input type="text" formControlName="name" class="form-control" id="name" aria-describedby="emailHelp">
+            </div>
+            <div class="mb-3">
+              <label for="exampleInputEmail1" class="form-label">Email </label>
+              <input type="email" formControlName="email" class="form-control" id="email" aria-describedby="emailHelp">
+            </div>
+            <div class="mb-3">
+              <label for="exampleInputEmail1" class="form-label">Salary </label>
+              <input type="text" formControlName="salary" class="form-control" id="email" aria-describedby="emailHelp">
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-primary" data-bs-dismiss="modal" (click)="addUser()">Add
+                user</button>
+            </div>
+          </form>
+
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+
+  <!-- Edit employee modal -->
+  <div class="modal fade" id="editUser" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Edit user details</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+
+          <form [formGroup]="empDetail">
+            <div class="mb-3">
+              <label for="exampleInputEmail1" class="form-label">Name </label>
+              <input type="text" formControlName="name" class="form-control" id="name" aria-describedby="emailHelp">
+            </div>
+            <div class="mb-3">
+              <label for="exampleInputEmail1" class="form-label">Email </label>
+              <input type="email" formControlName="email" class="form-control" id="email" aria-describedby="emailHelp">
+            </div>
+            <div class="mb-3">
+              <label for="exampleInputEmail1" class="form-label">Salary </label>
+              <input type="text" formControlName="salary" class="form-control" id="email" aria-describedby="emailHelp">
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-outline-success" (click)="updateUser()"
+                data-bs-dismiss="modal">Update </button>
+            </div>
+          </form>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
