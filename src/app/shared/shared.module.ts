@@ -17,11 +17,17 @@ import { RouterModule } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserModule } from '@angular/platform-browser';
-import { User } from '../model/user';
+import { MatDialogModule } from '@angular/material/dialog';
+import { EmpAddEditComponent } from '../modules/emp-add-edit/emp-add-edit.component';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatRadioModule } from '@angular/material/radio';
+import { MatSelectModule } from '@angular/material/select';
+import { NativeDateModule } from '@angular/material/core';
+import { MatTableModule } from '@angular/material/table';
+import { MatInputModule } from '@angular/material/input';
+import { MatFormFieldModule } from "@angular/material/form-field";
 import { UserComponent } from '../modules/user/user.component';
-//import {MatTableModule} from '@angular/material/table';
-
-
+import {MatPaginatorModule} from '@angular/material/paginator';
 @NgModule({
   declarations: [
     HeaderComponent,
@@ -30,7 +36,8 @@ import { UserComponent } from '../modules/user/user.component';
     AreaComponent,
     CardComponent,
     PieComponent,
-    
+    EmpAddEditComponent,
+    UserComponent
   ],
   imports: [
     CommonModule,
@@ -45,8 +52,16 @@ import { UserComponent } from '../modules/user/user.component';
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    BrowserModule
-    //MatTableModule
+    BrowserModule,
+    MatDialogModule,
+    MatFormFieldModule,
+    MatDatepickerModule,
+    MatRadioModule,
+    MatSelectModule,
+    MatInputModule,
+    NativeDateModule,
+    MatTableModule,
+    MatPaginatorModule
   ],
   exports: [
     HeaderComponent,
@@ -57,8 +72,10 @@ import { UserComponent } from '../modules/user/user.component';
     PieComponent,
     FormsModule,
     ReactiveFormsModule,
-    // HttpClientModule,
-    // BrowserModule
+    HttpClientModule,
+    BrowserModule,
+    EmpAddEditComponent,
+    UserComponent
   ]
 })
 export class SharedModule { }

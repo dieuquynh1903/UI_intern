@@ -1,7 +1,10 @@
-import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, FormControl , } from '@angular/forms'
-import { User } from 'src/app/model/user';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { UserService } from 'src/app/service/user.service';
+import { MatDialog } from '@angular/material/dialog';
+import { EmpAddEditComponent } from '../emp-add-edit/emp-add-edit.component';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatSort } from '@angular/material/sort';
+import { MatTableDataSource } from '@angular/material/table';
 
 
 @Component({
@@ -11,83 +14,87 @@ import { UserService } from 'src/app/service/user.service';
 })
 export class UserComponent implements OnInit {
 
-  empDetail !: FormGroup;
-  empObj : User = new User();
-  empList : User[] = [];
+ displayedColumns: string[] = [
+    'id',
+    'firstName',
+    'lastName',
+    'email',
+    'gender',
+    'education',
+    'company',
+    'experience',
+    'package',
+    'action',
+  ];
+  dataSource!: MatTableDataSource<any>;
 
-  constructor(public formBuilder : FormBuilder, public empService : UserService) { }
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
+  @ViewChild(MatSort) sort!: MatSort;
+
+  constructor(
+    private _dialog: MatDialog,
+    private _empService: UserService,
+   // private _coreService: CoreService
+  ) {}
 
   ngOnInit(): void {
-
-    this.getAllUser();
-
-    this.empDetail = this.formBuilder.group({
-      id : [''],
-      name : [''],
-      salary: [''],
-      email: ['']
-    });    
-
+    this.getEmployeeList();
   }
 
-  addUser() {
-    console.log(this.empDetail);
-    this.empObj.id = this.empDetail.value.id;
-    this.empObj.name = this.empDetail.value.name;
-    this.empObj.salary = this.empDetail.value.salary;
-    this.empObj.email = this.empDetail.value.email;
-
-    this.empService.addUser(this.empObj).subscribe(res=>{
-        console.log(res);
-        this.getAllUser();
-    },err=>{
-        console.log(err);
-    });
-
-  }
-
-  getAllUser() {
-    this.empService.getAllUser().subscribe(res=>{
-        this.empList = res;
-    },err=>{
-      console.log("error while fetching data.")
+  openAddEditEmpForm() {
+    const dialogRef = this._dialog.open(EmpAddEditComponent);
+    dialogRef.afterClosed().subscribe({
+      next: (val) => {
+        if (val) {
+          this.getEmployeeList();
+        }
+      },
     });
   }
 
-  editUser(emp : User) {
-    this.empDetail.controls['id'].setValue(emp.id);
-    this.empDetail.controls['name'].setValue(emp.name);
-    this.empDetail.controls['email'].setValue(emp.email);
-    this.empDetail.controls['salary'].setValue(emp.salary);
-
+  getEmployeeList() {
+    this._empService.getEmployeeList().subscribe({
+      next: (res) => {
+        this.dataSource = new MatTableDataSource(res);
+        this.dataSource.sort = this.sort;
+        this.dataSource.paginator = this.paginator;
+        console.log(res)
+      },
+      error: console.log,
+    });
   }
 
-  updateUser() {
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource.filter = filterValue.trim().toLowerCase();
 
-    this.empObj.id = this.empDetail.value.id;
-    this.empObj.name = this.empDetail.value.name;
-    this.empObj.salary = this.empDetail.value.salary;
-    this.empObj.email = this.empDetail.value.email;
-
-    this.empService.updateUser(this.empObj).subscribe(res=>{
-      console.log(res);
-      this.getAllUser();
-    },err=>{
-      console.log(err);
-    })
-
+    if (this.dataSource.paginator) {
+      this.dataSource.paginator.firstPage();
+    }
   }
 
-  deleteUser(emp : User) {
+  deleteEmployee(id: number) {
+    this._empService.deleteEmployee(id).subscribe({
+      next: (res) => {
+      //  this._coreService.openSnackBar('Employee deleted!', 'done');
+        this.getEmployeeList();
+      },
+      error: console.log,
+    });
+  }
 
-    this.empService.deleteUser(emp).subscribe(res=>{
-      console.log(res);
-      alert('Employee deleted successfully');
-      this.getAllUser();
-    },err => {
-      console.log(err);
+  openEditForm(data: any) {
+    const dialogRef = this._dialog.open(EmpAddEditComponent, {
+      data,
     });
 
+    dialogRef.afterClosed().subscribe({
+      next: (val) => {
+        if (val) {
+          this.getEmployeeList();
+        }
+      },
+    });
   }
 
 }
