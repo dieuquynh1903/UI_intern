@@ -1,0 +1,120 @@
+{
+  "posts": [
+    {
+      "id": 1,
+      "title": "json-server",
+      "author": "typicode"
+    }
+  ],
+  "comments": [
+    {
+      "id": 1,
+      "body": "some comment",
+      "postId": 1
+    }
+  ],
+  "profile": {
+    "name": "typicode"
+  },
+  "users": [
+    {
+      "firstName": "Tong",
+      "lastName": "Quynh",
+      "email": "dieuquynh@gmail.com",
+      "gender": "female",
+      "education": "Diploma",
+      "company": "TMA",
+      "experience": 1,
+      "package": 1,
+      "id": 1
+    },
+    {
+      "firstName": "Hoa",
+      "lastName": "Nguyen",
+      "email": "hoanguyen@gmail.com",
+      "gender": "female",
+      "education": "Graduate",
+      "company": "ddd",
+      "experience": 3,
+      "package": 4,
+      "id": 2
+    },
+    {
+      "firstName": "Hoa",
+      "lastName": "Nguyen",
+      "email": "hoanguyen@gmail.com",
+      "gender": "female",
+      "education": "Graduate",
+      "company": "ddd",
+      "experience": 3,
+      "package": 4,
+      "id": 3
+    },
+    {
+      "firstName": "Ngoan",
+      "lastName": "Tran",
+      "email": "ngoan@gmail.com",
+      "gender": "male",
+      "education": "Graduate",
+      "company": "fesgfes",
+      "experience": 5,
+      "package": 222,
+      "id": 4
+    },
+    {
+      "firstName": "Nhan",
+      "lastName": "Ngo",
+      "email": "ngo@gmail.com",
+      "gender": "male",
+      "education": "Diploma",
+      "company": "fsagfds",
+      "experience": 4,
+      "package": 34235,
+      "id": 5
+    },
+    {
+    "firstName": "Tong",
+    "lastName": "Quynh",
+    "email": "dieuquynh@gmail.com",
+    "gender": "female",
+    "education": "Diploma",
+    "company": "TMA",
+    "experience": 1,
+    "package": 1,
+    "id": 6
+  },
+  {
+    "firstName": "Hoa",
+    "lastName": "Nguyen",
+    "email": "hoanguyen@gmail.com",
+    "gender": "female",
+    "education": "Graduate",
+    "company": "ddd",
+    "experience": 3,
+    "package": 4,
+    "id": 7
+  },
+  {
+    "firstName": "Ngoan",
+    "lastName": "Tran",
+    "email": "ngoan@gmail.com",
+    "gender": "male",
+    "education": "Graduate",
+    "company": "fesgfes",
+    "experience": 5,
+    "package": 222,
+    "id": 8
+  },
+  {
+    "firstName": "Nhan",
+    "lastName": "Ngo",
+    "email": "ngo@gmail.com",
+    "gender": "male",
+    "education": "Diploma",
+    "company": "fsagfds",
+    "experience": 4,
+    "package": 34235,
+    "id": 9
+  }
+  ]
+}
